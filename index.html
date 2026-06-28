@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Vũ Hiền Nhi</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         * {
@@ -462,9 +464,30 @@
 
         .bento-3 {
             grid-column: span 3;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+        }
+        .bento-3 .bento-card {
+            flex: 1;
+        }
+        .goal-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #ff7eb3;
+            text-shadow: 0 0 15px rgba(255, 126, 179, 0.6);
+            flex-shrink: 0;
+        }
+        .goal-connector span {
+            display: inline-block;
+            animation: moveRight 1.5s infinite ease-in-out;
+        }
+        @keyframes moveRight {
+            0% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            100% { transform: translateX(-5px); }
         }
 
         .bento-4 {
@@ -490,6 +513,47 @@
             font-size: 16.5px;
             line-height: 1.7;
             color: #444;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            background: rgba(255, 126, 179, 0.08);
+            border-color: rgba(255, 126, 179, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 126, 179, 0.1);
+        }
+        .info-label {
+            font-size: 11px;
+            color: #ffb270;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        .info-value {
+            font-size: 16px;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 500px) {
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* SHAPES ANIMATIONS */
@@ -556,9 +620,17 @@
             }
 
             .bento-3 {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                flex-direction: column;
+                gap: 15px;
             }
+            .goal-connector span {
+                animation: moveDown 1.5s infinite ease-in-out;
+            }
+        }
+        @keyframes moveDown {
+            0% { transform: translateY(-5px) rotate(90deg); }
+            50% { transform: translateY(5px) rotate(90deg); }
+            100% { transform: translateY(-5px) rotate(90deg); }
         }
 
         /* --- PROJECT CARDS --- */
@@ -751,15 +823,33 @@
 
         @media (max-width: 900px) {
             .carousel-slide {
-                min-width: calc(100% - 20px);
+                min-width: calc(100% - 10px);
+                margin: 0 5px;
             }
             .carousel-track-wrapper {
-                width: calc(100% - 90px);
+                width: 100%;
+                margin: 0;
+                padding: 10px 0;
             }
             .carousel-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
                 width: 40px;
                 height: 40px;
                 font-size: 20px;
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255, 79, 123, 0.3);
+                z-index: 10;
+            }
+            .carousel-btn.prev-btn { left: 5px; }
+            .carousel-btn.next-btn { right: 5px; }
+            .card-content {
+                padding: 20px;
+            }
+            .interactive-card h3 {
+                font-size: 1.25rem;
             }
         }
         /* --- CONCLUSION SECTION --- */
@@ -832,11 +922,12 @@
         }
 
         .skill-list li::before {
-            content: '✅';
+            content: '•';
             position: absolute;
             left: 0;
             top: 2px;
             font-size: 18px;
+            color: #ff7eb3;
         }
 
         .skill-list b {
@@ -885,6 +976,391 @@
             }
         }
     </style>
+    <!-- Dark Mode & Modern Aesthetic Overrides -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. Typography */
+        * {
+            font-family: "Inter", "Segoe UI", sans-serif;
+        }
+        h1, h2, h3, .title, .logo, .hero-text h1, h1 i, h2 i, h3 i, .title i {
+            font-family: "Playfair Display", serif;
+            letter-spacing: 0.5px;
+        }
+        
+        /* 2. Soft Gradient Universe Background */
+        body {
+            background: linear-gradient(135deg, #18091a, #0c0816, #140813);
+            color: #e2e8f0;
+        }
+        body::before {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(236, 72, 153, 0.12), transparent 45%),
+                radial-gradient(circle at 80% 10%, rgba(139, 92, 246, 0.12), transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(255, 126, 179, 0.12), transparent 45%);
+        }
+        
+        /* 3. Starry Galaxy Depth */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 40px 60px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 150px 110px, rgba(255, 215, 215, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 240px 40px, rgba(215, 235, 255, 0.7), rgba(0,0,0,0)),
+                radial-gradient(2.5px 2.5px at 300px 150px, rgba(255, 255, 255, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 80px 200px, rgba(255, 255, 215, 0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 180px 280px, rgba(255, 255, 255, 0.6), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 320px 320px, rgba(255, 215, 255, 0.9), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 350px, rgba(215, 215, 255, 0.8), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 380px 80px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0));
+            background-size: 400px 400px;
+            background-repeat: repeat;
+            opacity: 0.7;
+            animation: starsDrift 100s linear infinite;
+        }
+
+        @keyframes starsDrift {
+            from { background-position: 0 0; }
+            to { background-position: -400px 400px; }
+        }
+
+        /* 3. Glassmorphism & Soft Colors */
+        header {
+            background: rgba(11, 12, 16, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        .logo { color: #f472b6; text-shadow: 0 0 14px rgba(244, 114, 182, 0.3); }
+        .menu a { 
+            color: #cbd5e1; 
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        .menu a::after {
+            background: linear-gradient(to right, #ff7eb3, #ffb270);
+            height: 2px;
+            bottom: 6px;
+            left: 20px;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        .menu a:hover { 
+            color: #fff; 
+            background: linear-gradient(135deg, rgba(255, 126, 179, 0.2), rgba(255, 178, 112, 0.2));
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.15);
+        }
+        .menu a:hover::after {
+            width: calc(100% - 40px);
+        }
+        .hamburger { color: #f472b6; }
+        
+        .hero-text h1 { color: #fdf2f8; font-size: clamp(24px, 3vw, 36px); }
+        .hero-text h1 i { 
+            background: linear-gradient(to right, #ff7eb3, #ffb270);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic; 
+            font-size: clamp(48px, 8vw, 84px);
+            display: inline-block;
+            padding-right: 15px;
+            padding-bottom: 5px;
+        }
+        .hero-text p { color: #94a3b8; font-weight: 300; }
+        
+        .btn {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            box-shadow: 0 12px 25px rgba(236, 72, 153, 0.25);
+            font-family: "Inter", sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Glass Cards */
+        .avatar-card, .bento-card, .interactive-card, .timeline-card, .split-item, .card {
+            background: rgba(255, 255, 255, 0.02) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+        }
+        
+        .avatar-card:hover, .bento-card:hover, .interactive-card:hover, .timeline-card:hover, .split-item:hover, .card:hover {
+            box-shadow: 0 25px 45px rgba(236, 72, 153, 0.1) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            transform: translateY(-8px);
+        }
+        
+        /* Text inside cards */
+        .avatar-card h2, .bento-card h3, .interactive-card h3, .timeline-card h3, .split-item h4 {
+            color: #fdf2f8 !important;
+            font-family: "Playfair Display", serif;
+        }
+
+        /* Title highlights */
+        .bento-card h3, .timeline-card h3, .split-item h4 {
+            background: linear-gradient(to right, #ff7eb3, #ffb270);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            text-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+            margin-bottom: 15px;
+        }
+
+        /* Card accents (viền nhấn) */
+        .bento-card, .timeline-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-card::before, .timeline-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff7eb3, #ffb270);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover::before, .timeline-card:hover::before {
+            width: 5px;
+            box-shadow: 0 0 15px rgba(255, 126, 179, 0.6);
+        }
+        .avatar-card h2 i {
+            background: linear-gradient(to right, #ff7eb3, #ffb270);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic; 
+            font-weight: 700;
+            display: inline-block;
+            padding: 5px 15px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+        .avatar-card p, .bento-card p, .bento-card li, .interactive-card p, .timeline-card p, .skill-list li, .split-item p {
+            color: #94a3b8 !important;
+            font-weight: 300;
+        }
+        .bento-card li b, .interactive-card b, .skill-list b {
+            color: #e2e8f0 !important;
+            font-weight: 500;
+        }
+        
+        /* Card specific tweaks */
+        .avatar { background: linear-gradient(135deg, #1e1b2e, #2d1b2e, #1a2333); box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.05), 0 10px 25px rgba(0,0,0,0.3); }
+        .bento-4 { background: rgba(236, 72, 153, 0.02) !important; }
+        .interactive-card .card-img-wrapper { background: rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .interactive-card .card-img-wrapper img { opacity: 0.85; transition: 0.6s ease; }
+        .interactive-card:hover .card-img-wrapper img { opacity: 1; transform: scale(1.08); }
+        
+        .tag { background: rgba(236, 72, 153, 0.1) !important; color: #f472b6 !important; border: 1px solid rgba(244, 114, 182, 0.2); font-weight: 500; }
+        .drive-btn { background: rgba(255, 255, 255, 0.03) !important; border: 1px solid rgba(255, 255, 255, 0.1); color: #e2e8f0 !important; font-weight: 500; }
+        .interactive-card:hover .drive-btn { background: linear-gradient(135deg, #ec4899, #8b5cf6) !important; border-color: transparent; color: #fff !important; }
+        
+        /* Typography overrides for aesthetic */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: #ffb270;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .section-label::before, .section-label::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: #ffb270;
+            opacity: 0.5;
+        }
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(32px, 5vw, 52px);
+            color: #ffe4e6;
+            margin-bottom: 15px;
+        }
+        .section-desc {
+            color: #94a3b8;
+            font-size: 16.5px;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        /* Split card challenge */
+        .split-item { border-left: 4px solid #f472b6 !important; }
+        .split-item.challenge { border-left-color: #8b5cf6 !important; }
+        
+        /* Footer & Buttons */
+        footer { 
+            background: rgba(11, 12, 16, 0.4); 
+            border-top: 1px solid rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(10px); 
+            padding: 40px 20px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .footer-primary {
+            color: #94a3b8;
+            font-size: 14.5px;
+            margin-bottom: 8px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .footer-name {
+            background: linear-gradient(to right, #ff7eb3, #ffb270);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .footer-secondary {
+            color: #475569;
+            font-size: 12.5px;
+            font-weight: 300;
+        }
+        .carousel-btn { background: rgba(255, 255, 255, 0.05); color: #f472b6; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px); }
+        .carousel-btn:hover { background: #ec4899; color: #fff; border-color: transparent; }
+        .top-btn { background: rgba(236, 72, 153, 0.8); backdrop-filter: blur(5px); }
+        
+        /* Menu Mobile */
+        @media (max-width: 700px) {
+            .menu { background: rgba(15, 17, 26, 0.95); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); }
+            .menu a { color: #e2e8f0; }
+        }
+
+        /* --- LIGHT MODE OVERRIDES --- */
+        body.light-mode {
+            background: #f8fafc;
+            color: #334155;
+        }
+        body.light-mode::before,
+        body.light-mode::after {
+            display: none; /* Hide starry background */
+        }
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        body.light-mode .menu {
+            background: transparent;
+            border: none;
+        }
+        body.light-mode .menu a {
+            color: #475569;
+        }
+        body.light-mode .menu a:hover {
+            color: #ff4f7b;
+            text-shadow: none;
+            background: rgba(255, 79, 123, 0.08);
+            box-shadow: none;
+        }
+        body.light-mode .menu a::after {
+            background: #ff4f7b;
+        }
+        body.light-mode .hero-text h1,
+        body.light-mode .section-title {
+            color: #1e293b !important;
+            text-shadow: none;
+        }
+        body.light-mode .hero-text p,
+        body.light-mode .section-desc {
+            color: #475569 !important;
+        }
+        body.light-mode .avatar-card,
+        body.light-mode .bento-card,
+        body.light-mode .interactive-card,
+        body.light-mode .timeline-card,
+        body.light-mode .split-item,
+        body.light-mode .info-card {
+            background: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.05) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+        }
+        body.light-mode .avatar-card h2,
+        body.light-mode .bento-card h3,
+        body.light-mode .interactive-card h3,
+        body.light-mode .timeline-card h3,
+        body.light-mode .split-item h4 {
+            color: #1e293b !important;
+            text-shadow: none;
+        }
+        body.light-mode .avatar-card p,
+        body.light-mode .bento-card p,
+        body.light-mode .bento-card li,
+        body.light-mode .interactive-card p,
+        body.light-mode .timeline-card p,
+        body.light-mode .skill-list li,
+        body.light-mode .split-item p,
+        body.light-mode .info-value {
+            color: #475569 !important;
+        }
+        body.light-mode .info-label {
+            color: #f59e0b;
+        }
+        body.light-mode .bento-card li b,
+        body.light-mode .interactive-card b,
+        body.light-mode .skill-list b {
+            color: #1e293b !important;
+        }
+        body.light-mode .goal-connector {
+            color: #f472b6;
+            text-shadow: none;
+        }
+        body.light-mode .carousel-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: transparent;
+        }
+        body.light-mode .carousel-btn:hover {
+            background: #ff4f7b;
+            color: white;
+        }
+        body.light-mode footer {
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        body.light-mode .footer-primary {
+            color: #475569;
+        }
+        body.light-mode .footer-secondary {
+            color: #64748b;
+        }
+        body.light-mode .drive-btn {
+            background: rgba(255, 79, 123, 0.05) !important;
+            color: #ff4f7b !important;
+            border-color: rgba(255, 79, 123, 0.2);
+        }
+        @media (max-width: 700px) {
+            body.light-mode .menu {
+                background: rgba(255, 255, 255, 0.98);
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+            body.light-mode .hamburger { color: #333; }
+        }
+    </style>
 </head>
 
 <body>
@@ -900,15 +1376,22 @@
                 <a href="#intro">Giới thiệu</a>
                 <a href="#projects">Dự án</a>
                 <a href="#conclusion">Tổng kết</a>
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" style="background:none; border:none; color: #ffb270; font-size: 20px; cursor: pointer; margin-left: 10px; transition: transform 0.3s; vertical-align: middle;">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
             </div>
         </nav>
     </header>
 
     <section id="intro" class="hero">
         <div class="hero-text reveal">
-            <h1>Xin chào, tôi là Vũ Hiền Nhi</h1>
+            <h1>Xin chào, em là <i>Vũ Hiền Nhi</i></h1>
+            <p class="slogan" style="font-size: 1.3rem; background: linear-gradient(to right, #ff7eb3, #ffb270); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 20px; font-weight: 600; display: inline-block;">
+                "Ngôn ngữ kết nối tri thức, công nghệ dẫn lối tương lai"
+            </p>
             <p>
-                Chào mừng bạn đến với Portfolio cá nhân của tôi — nơi tổng hợp hành trình học tập,
+                Chào mừng bạn đến với Portfolio cá nhân của em — nơi tổng hợp hành trình học tập,
                 phát triển năng lực số và ứng dụng trí tuệ nhân tạo trong học tập.
             </p>
             <a href="#projects" class="btn">Khám phá dự án</a>
@@ -919,7 +1402,7 @@
                 <img src="acces/5894694a8f910ecf5780.jpg" alt="Vũ Hiền Nhi"
                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
             </div>
-            <h2>Vũ Hiền Nhi</h2>
+            <h2><i>Vũ Hiền Nhi</i></h2>
             <p>25040172 - QH25E7</p>
             <p>ULIS - Đại học Quốc gia Hà Nội</p>
         </div>
@@ -937,57 +1420,67 @@
     </section>
 
     <section>
-        <h2 class="title reveal">Giới thiệu bản thân</h2>
+        <div class="section-header reveal">
+            <div class="section-label">01 &middot; TRANG GIỚI THIỆU</div>
+            <h2 class="section-title">Về bản thân em</h2>
+            <p class="section-desc">Đôi nét về thông tin cá nhân, sở thích và những mục tiêu học tập mà em đang hướng tới.</p>
+        </div>
 
         <div class="bento-grid">
             <!-- Ô 1: Thông tin cơ bản -->
             <div class="bento-card bento-1 reveal">
                 <div class="floating-shape shape-circle"></div>
-                <div class="bento-icon">🧑‍🎓</div>
                 <h3>Thông tin cá nhân</h3>
-                <ul>
-                    <li><b>Họ tên:</b> Vũ Hiền Nhi</li>
-                    <li><b>Mã SV:</b> 25040172</li>
-                    <li><b>Lớp:</b> QH25E7</li>
-                    <li><b>Trường:</b> Đại học Ngoại ngữ – ĐHQGHN (ULIS)</li>
-                </ul>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <span class="info-label">Họ tên</span>
+                        <span class="info-value">Vũ Hiền Nhi</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Mã Sinh viên</span>
+                        <span class="info-value">25040172</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Lớp</span>
+                        <span class="info-value">QH25E7</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Trường</span>
+                        <span class="info-value" style="font-size: 13.5px;">Đại học Ngoại ngữ – ĐHQGHN (ULIS)</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Ô 2: Sở thích -->
             <div class="bento-card bento-2 reveal">
                 <div class="floating-shape shape-triangle"></div>
-                <div class="bento-icon">💡</div>
                 <h3>Sở thích cá nhân</h3>
                 <p>
-                    Là một sinh viên ngành ngôn ngữ trong kỷ nguyên số, tôi luôn hào hứng với việc khám phá và ứng dụng
-                    các công cụ công nghệ vào quá trình học tập. Tôi thích tìm hiểu về các giải pháp kỹ thuật số giúp
+                    Là một sinh viên ngành ngôn ngữ trong kỷ nguyên số, em luôn hào hứng với việc khám phá và ứng dụng
+                    các công cụ công nghệ vào quá trình học tập. Em thích tìm hiểu về các giải pháp kỹ thuật số giúp
                     tối ưu hóa hiệu suất làm việc cá nhân, thiết kế đồ họa cơ bản và xây dựng các phương pháp tự học
                     thông minh.
                 </p>
             </div>
 
             <!-- Ô 3: Mục tiêu học tập -->
-            <div class="bento-card bento-3 reveal">
-                <div class="floating-shape shape-square"></div>
-                <div>
-                    <div class="bento-icon">🎯</div>
-                    <h3 style="color: #8b5cf6;">Mục tiêu ngắn hạn</h3>
-                    <p>Tích cực phát triển các năng lực cốt lõi trong kỷ nguyên số, trọng tâm là ứng dụng công nghệ để
-                        nâng cao hiệu quả ôn luyện các chứng chỉ quốc tế (IELTS), tối ưu hóa quy trình làm việc nhóm
-                        trực tuyến và làm chủ các công cụ hỗ trợ học thuật.</p>
+            <div class="bento-3 reveal">
+                <div class="bento-card" style="position: relative;">
+                    <div class="floating-shape shape-square" style="opacity: 0.5;"></div>
+                    <h3>Mục tiêu ngắn hạn</h3>
+                    <p>Tích cực phát triển các năng lực cốt lõi trong kỷ nguyên số, trọng tâm là ứng dụng công nghệ để nâng cao hiệu quả ôn luyện các chứng chỉ quốc tế (IELTS), tối ưu hóa quy trình làm việc nhóm trực tuyến và làm chủ các công cụ hỗ trợ học thuật.</p>
                 </div>
-                <div>
-                    <div class="bento-icon">🚀</div>
-                    <h3 style="color: #8b5cf6;">Định hướng dài hạn</h3>
-                    <p>Trở thành một người học ngôn ngữ có tư duy công nghệ mạnh mẽ, có khả năng tích hợp linh hoạt các
-                        công cụ số và các giải pháp Trí tuệ nhân tạo (AI) vào việc học tập, nghiên cứu chuyên sâu và
-                        công việc thực tế trong tương lai.</p>
+                <div class="goal-connector">
+                    <span>&#10142;</span>
+                </div>
+                <div class="bento-card">
+                    <h3>Định hướng dài hạn</h3>
+                    <p>Trở thành một người học ngôn ngữ có tư duy công nghệ mạnh mẽ, có khả năng tích hợp linh hoạt các công cụ số và các giải pháp Trí tuệ nhân tạo (AI) vào việc học tập, nghiên cứu chuyên sâu và công việc thực tế trong tương lai.</p>
                 </div>
             </div>
 
             <!-- Ô 4: Mục tiêu Portfolio -->
             <div class="bento-card bento-4 reveal">
-                <div class="bento-icon" style="margin-bottom: 5px;">🌟</div>
                 <h3>Mục tiêu của Portfolio này</h3>
                 <ul style="padding-left: 20px;">
                     <li style="margin-bottom: 8px;">Tổng hợp và hệ thống hóa toàn bộ các khối kiến thức, kỹ năng số cốt
@@ -1002,7 +1495,11 @@
     </section>
 
     <section id="projects">
-        <h2 class="title reveal">Trang dự án</h2>
+        <div class="section-header reveal">
+            <div class="section-label">02 &middot; TRANG DỰ ÁN</div>
+            <h2 class="section-title">Các bài tập thành phần</h2>
+            <p class="section-desc">Tổng hợp kết quả 6 bài tập — mỗi bài phản ánh một kỹ năng số thiết yếu trong hành trình học tập.</p>
+        </div>
 
         <div class="carousel-container reveal">
             <button class="carousel-btn prev-btn" onclick="slidePrev()">&#10094;</button>
@@ -1011,9 +1508,6 @@
                     <!-- Bài tập 1 -->
                     <div class="carousel-slide">
                         <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
-                            <div class="card-img-wrapper">
-                                <img src="acces/anh-sach.webp" alt="Bài tập 1">
-                            </div>
                             <div class="card-content">
                                 <span class="tag" style="background: #e0e7ff; color: #4338ca;">Bài tập 1</span>
                                 <h3>Thao tác cơ bản với tập tin và thư mục</h3>
@@ -1027,9 +1521,6 @@
                     <!-- Bài tập 2 -->
                     <div class="carousel-slide">
                         <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
-                            <div class="card-img-wrapper">
-                                <img src="acces/anh-sach.webp" alt="Bài tập 2">
-                            </div>
                             <div class="card-content">
                                 <span class="tag" style="background: #fce7f3; color: #be185d;">Bài tập 2</span>
                                 <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
@@ -1043,9 +1534,6 @@
                     <!-- Bài tập 3 -->
                     <div class="carousel-slide">
                         <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
-                            <div class="card-img-wrapper">
-                                <img src="acces/anh-sach.webp" alt="Bài tập 3">
-                            </div>
                             <div class="card-content">
                                 <span class="tag" style="background: #dcfce7; color: #15803d;">Bài tập 3</span>
                                 <h3>Viết Prompt hiệu quả cho học tập</h3>
@@ -1059,9 +1547,6 @@
                     <!-- Bài tập 4 -->
                     <div class="carousel-slide">
                         <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
-                            <div class="card-img-wrapper">
-                                <img src="acces/anh-sach.webp" alt="Bài tập 4">
-                            </div>
                             <div class="card-content">
                                 <span class="tag" style="background: #fef08a; color: #a16207;">Bài tập 4</span>
                                 <h3>Hợp tác trực tuyến cho dự án nhóm</h3>
@@ -1075,9 +1560,6 @@
                     <!-- Bài tập 5 -->
                     <div class="carousel-slide">
                         <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
-                            <div class="card-img-wrapper">
-                                <img src="acces/anh-sach.webp" alt="Bài tập 5">
-                            </div>
                             <div class="card-content">
                                 <span class="tag" style="background: #e0f2fe; color: #0369a1;">Bài tập 5</span>
                                 <h3>AI tạo sinh hỗ trợ sáng tạo nội dung</h3>
@@ -1091,9 +1573,6 @@
                     <!-- Bài tập 6 -->
                     <div class="carousel-slide">
                         <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
-                            <div class="card-img-wrapper">
-                                <img src="acces/anh-sach.webp" alt="Bài tập 6">
-                            </div>
                             <div class="card-content">
                                 <span class="tag" style="background: #f3e8ff; color: #7e22ce;">Bài tập 6</span>
                                 <h3>Sử dụng AI có trách nhiệm</h3>
@@ -1110,22 +1589,26 @@
     </section>
 
     <section id="conclusion">
-        <h2 class="title reveal">Tổng kết hành trình</h2>
+        <div class="section-header reveal">
+            <div class="section-label">03 &middot; TRANG TỔNG KẾT</div>
+            <h2 class="section-title">Hành trình nhìn lại</h2>
+            <p class="section-desc">Những trải nghiệm, bài học đắt giá và thành quả em đạt được sau quá trình hoàn thiện học phần này.</p>
+        </div>
 
         <div class="timeline-container">
             <!-- Khối 1 -->
             <div class="timeline-card reveal">
-                <h3><span style="font-size: 30px;">💡</span> Trải nghiệm & Cảm nhận</h3>
+                <h3>Trải nghiệm & Cảm nhận</h3>
                 <p>
-                    Hành trình xây dựng và hoàn thiện Digital Portfolio này là một trải nghiệm chuyển đổi số thực tế và vô cùng giá trị đối với một sinh viên năm nhất tại ULIS như tôi. Việc tự tay thiết kế website không chỉ giúp tôi hệ thống lại các sản phẩm học tập một cách trực quan, mà còn rèn luyện cho tôi thói quen chủ động làm chủ công nghệ, biết cách số hóa các kỹ năng và kết quả của bản thân để sẵn sàng hội nhập vào môi trường học tập hiện đại.
+                    Hành trình xây dựng và hoàn thiện Digital Portfolio này là một trải nghiệm chuyển đổi số thực tế và vô cùng giá trị đối với một sinh viên năm nhất tại ULIS như em. Việc tự tay thiết kế website không chỉ giúp em hệ thống lại các sản phẩm học tập một cách trực quan, mà còn rèn luyện cho em thói quen chủ động làm chủ công nghệ, biết cách số hóa các kỹ năng và kết quả của bản thân để sẵn sàng hội nhập vào môi trường học tập hiện đại.
                 </p>
             </div>
 
             <!-- Khối 2 -->
             <div class="timeline-card reveal">
-                <h3><span style="font-size: 30px;">🎯</span> Kiến thức & Kỹ năng</h3>
+                <h3>Kiến thức & Kỹ năng</h3>
                 <ul class="skill-list">
-                    <li><b>Làm chủ kỹ thuật Prompt chuyên nghiệp:</b> Tôi không còn sử dụng AI một cách cảm tính mà đã biết cách tư duy, xây dựng cấu trúc Prompt tối ưu để AI hỗ trợ chính xác cho các tác vụ học tập và xử lý thông tin.</li>
+                    <li><b>Làm chủ kỹ thuật Prompt chuyên nghiệp:</b> Em không còn sử dụng AI một cách cảm tính mà đã biết cách tư duy, xây dựng cấu trúc Prompt tối ưu để AI hỗ trợ chính xác cho các tác vụ học tập và xử lý thông tin.</li>
                     <li><b>Quản lý tài nguyên số và dữ liệu:</b> Hình thành tư duy khoa học trong việc tổ chức tệp tin, phân tích dữ liệu và sàng lọc thông tin học thuật có chiều sâu giữa kỷ nguyên bùng nổ thông tin.</li>
                     <li><b>Cộng tác và sáng tạo trên không gian số:</b> Thành thạo việc sử dụng các nền tảng đám mây để điều phối dự án nhóm trực tuyến và biết cách phối hợp với trí tuệ nhân tạo để tối ưu hóa năng lực sáng tạo nội dung số.</li>
                 </ul>
@@ -1135,13 +1618,13 @@
             <div class="timeline-card reveal" style="background: transparent; border: none; box-shadow: none; padding: 0;">
                 <div class="split-card">
                     <div class="split-item reveal">
-                        <h4 style="color: #ff4f7b;">❤️ Điểm tâm đắc</h4>
-                        <p style="font-size: 15.5px;">Tôi vô cùng tâm đắc khi toàn bộ chuỗi sản phẩm từ Bài 1 đến Bài 6 của mình được liên kết chặt chẽ và thể hiện một cách mạch lạc trên nền tảng Portfolio kỹ thuật số này. Đây chính là minh chứng rõ ràng nhất cho sự tiến bộ trong năng lực số và tư duy đổi mới của tôi sau khi hoàn thành học phần.</p>
+                        <h4 style="color: #ff4f7b;">Điểm tâm đắc</h4>
+                        <p style="font-size: 15.5px;">Em vô cùng tâm đắc khi toàn bộ chuỗi sản phẩm từ Bài 1 đến Bài 6 của mình được liên kết chặt chẽ và thể hiện một cách mạch lạc trên nền tảng Portfolio kỹ thuật số này. Đây chính là minh chứng rõ ràng nhất cho sự tiến bộ trong năng lực số và tư duy đổi mới của em sau khi hoàn thành học phần.</p>
                     </div>
                     
                     <div class="split-item challenge reveal">
-                        <h4 style="color: #8b5cf6;">🚀 Thách thức vượt qua</h4>
-                        <p style="font-size: 15.5px;">Khó khăn lớn nhất ban đầu là làm quen với các công cụ thiết kế website, tối ưu giao diện sao cho khoa học, dễ đọc, đồng thời đảm bảo tuyệt đối quy tắc liêm chính học thuật. Tuy nhiên, thông qua việc kiên trì thực hành và bám sát rubric đánh giá, tôi đã vượt qua rào cản kỹ thuật để tạo nên một sản phẩm Portfolio tinh gọn, đúng chuẩn mực đề ra.</p>
+                        <h4 style="color: #8b5cf6;">Thách thức vượt qua</h4>
+                        <p style="font-size: 15.5px;">Khó khăn lớn nhất ban đầu là làm quen với các công cụ thiết kế website, tối ưu giao diện sao cho khoa học, dễ đọc, đồng thời đảm bảo tuyệt đối quy tắc liêm chính học thuật. Tuy nhiên, thông qua việc kiên trì thực hành và bám sát rubric đánh giá, em đã vượt qua rào cản kỹ thuật để tạo nên một sản phẩm Portfolio tinh gọn, đúng chuẩn mực đề ra.</p>
                     </div>
                 </div>
             </div>
@@ -1149,7 +1632,12 @@
     </section>
 
     <footer>
-        © 2026 | Digital Portfolio - Vũ Hiền Nhi
+        <p class="footer-primary">
+            <span class="footer-name">Vũ Hiền Nhi</span> &middot; MSV 25040172 &middot; Đại học Ngoại ngữ – ĐHQGHN (ULIS)
+        </p>
+        <p class="footer-secondary">
+            Portfolio Kỹ thuật số &middot; Nhập môn Công nghệ số &amp; Ứng dụng Trí tuệ nhân tạo &middot; 2026
+        </p>
     </footer>
 
     <button class="top-btn" id="topBtn" onclick="scrollToTop()">↑</button>
@@ -1308,8 +1796,34 @@
 
         startTimer();
 
+        // --- THEME TOGGLE LOGIC ---
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const icon = document.getElementById('theme-icon');
+            
+            if (document.body.classList.contains('light-mode')) {
+                icon.className = 'fa-solid fa-sun';
+                document.getElementById('theme-toggle').style.color = '#f59e0b';
+                localStorage.setItem('theme', 'light');
+            } else {
+                icon.className = 'fa-solid fa-moon';
+                document.getElementById('theme-toggle').style.color = '#ffb270';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Check for saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun';
+                document.getElementById('theme-toggle').style.color = '#f59e0b';
+            }
+        });
+
     </script>
 
 </body>
 
 </html>
+
