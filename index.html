@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Vũ Hiền Nhi</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff5f7, #f2f7ff, #f5fff8);
+            color: #263238;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 111, 145, 0.25), transparent 30%),
+                radial-gradient(circle at 80% 10%, rgba(120, 180, 255, 0.25), transparent 30%),
+                radial-gradient(circle at 50% 90%, rgba(132, 255, 201, 0.22), transparent 35%);
+            z-index: -1;
+            animation: bgMove 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes bgMove {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.15);
+            }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ff4f7b;
+            text-shadow: 0 0 14px rgba(255, 79, 123, 0.5);
+        }
+
+        .menu {
+            display: flex;
+            gap: 22px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #ff4f7b;
+            text-shadow: 0 0 10px rgba(255, 79, 123, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #ff4f7b;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 120px 25px 80px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(38px, 6vw, 72px);
+            color: #ff4f7b;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: drop 1s ease forwards;
+        }
+
+        .hero-text p {
+            font-size: 19px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4f7b, #8b7cff);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 12px 25px rgba(255, 79, 123, 0.35);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-6px) scale(1.04);
+            box-shadow: 0 18px 35px rgba(139, 124, 255, 0.45);
+        }
+
+        .avatar-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 235, 242, 0.8));
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            border-radius: 35px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(255, 79, 123, 0.15);
+            animation: float 4s infinite ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng lướt sáng Bling Bling */
+        .avatar-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255, 150, 180, 0.3), rgba(255,255,255,0.8), rgba(255, 150, 180, 0.3), rgba(255,255,255,0));
+            transform: skewX(-25deg);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .avatar-card:hover::after {
+            animation: blingSweep 1.2s ease-out;
+        }
+
+        @keyframes blingSweep {
+            0% { left: -150%; }
+            100% { left: 250%; }
+        }
+
+        .avatar {
+            width: 220px;
+            height: 220px;
+            margin: auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffb6c9, #b7f8db, #b8c6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.8), 0 10px 25px rgba(0,0,0,0.1);
+            cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+
+        @keyframes drop {
+            from {
+                opacity: 0;
+                transform: translateY(-80px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: clamp(32px, 4vw, 48px);
+            text-align: center;
+            color: #ff4f7b;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.78);
+            border-radius: 28px;
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(255, 79, 123, 0.18);
+        }
+
+        .card h3 {
+            color: #8b5cf6;
+            margin-bottom: 14px;
+            font-size: 23px;
+        }
+
+        .card p,
+        .card li {
+            line-height: 1.75;
+            font-size: 16px;
+        }
+
+        ul {
+            padding-left: 22px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            right: -40px;
+            top: -40px;
+            background: linear-gradient(135deg, #ff85a2, #8b7cff);
+            border-radius: 50%;
+            opacity: 0.16;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: #ffe1ea;
+            color: #ff4f7b;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .product {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: #f7f3ff;
+            border-left: 5px solid #8b5cf6;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #5b3db8;
+        }
+
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: 0.8s;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #555;
+            font-weight: 600;
+        }
+
+        .top-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: #ff4f7b;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 10px 25px rgba(255, 79, 123, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .projects-grid,
+            .conclusion-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .hamburger {
+                display: block;
+            }
+
+            .menu {
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                flex-direction: column;
+                background: white;
+                padding: 22px;
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+                display: none;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            section {
+                padding-top: 105px;
+            }
+
+            .avatar {
+                width: 170px;
+                height: 170px;
+                font-size: 55px;
+            }
+        }
+
+        .flower {
+            position: fixed;
+            top: -50px;
+            z-index: 1000;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        .click-heart {
+            position: fixed;
+            z-index: 9999;
+            user-select: none;
+            pointer-events: none;
+            font-size: 20px;
+            animation: burst 1s ease-out forwards;
+        }
+
+        @keyframes burst {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* BENTO GRID LAYOUT */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.78);
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 45px rgba(255, 79, 123, 0.18);
+        }
+
+        .bento-1 {
+            grid-column: span 1;
+        }
+
+        .bento-2 {
+            grid-column: span 2;
+        }
+
+        .bento-3 {
+            grid-column: span 3;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .bento-4 {
+            grid-column: span 3;
+            background: linear-gradient(135deg, rgba(255, 245, 247, 0.9), rgba(242, 247, 255, 0.9));
+        }
+
+        .bento-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+            display: inline-block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .bento-card h3 {
+            color: #ff4f7b;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .bento-card p,
+        .bento-card li {
+            font-size: 16.5px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        /* SHAPES ANIMATIONS */
+        .floating-shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.5;
+            animation: floatShape 6s infinite ease-in-out;
+        }
+
+        .shape-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffb6c9, transparent);
+            top: -30px;
+            right: -30px;
+        }
+
+        .shape-triangle {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid rgba(139, 124, 255, 0.2);
+            bottom: 20px;
+            left: -20px;
+            animation-delay: 1.5s;
+        }
+
+        .shape-square {
+            width: 90px;
+            height: 90px;
+            background: rgba(132, 255, 201, 0.35);
+            border-radius: 18px;
+            transform: rotate(45deg);
+            top: 30%;
+            left: 45%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatShape {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(15deg);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-1,
+            .bento-2,
+            .bento-3,
+            .bento-4 {
+                grid-column: span 1;
+            }
+
+            .bento-3 {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* --- PROJECT CARDS --- */
+        .interactive-card {
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            border: 2px solid rgba(255, 79, 123, 0.1);
+            text-decoration: none !important; /* Quan trọng để bỏ gạch chân của thẻ a */
+            color: inherit !important;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Đảm bảo chữ bên trong thẻ a không bị màu xanh mặc định */
+        .interactive-card h3,
+        .interactive-card p,
+        .interactive-card b,
+        .interactive-card span {
+            text-decoration: none !important;
+            color: #333; /* Màu chữ mặc định */
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 79, 123, 0.2);
+            border-color: #ff4f7b;
+        }
+
+        /* Hiệu ứng lướt sáng Bling Bling cho Thẻ Dự án */
+        .interactive-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255, 150, 180, 0.3), rgba(255,255,255,0.8), rgba(255, 150, 180, 0.3), rgba(255,255,255,0));
+            transform: skewX(-25deg);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .interactive-card:hover::after {
+            animation: blingSweep 1.2s ease-out;
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 160px; /* Ép lùn thêm nữa */
+            overflow: hidden;
+            position: relative;
+            background: #fdf5f7;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Để hiển thị nguyên ảnh cú mèo */
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .interactive-card:hover .card-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px 25px; /* Giảm padding để thẻ bớt cao */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content .tag {
+            align-self: flex-start;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-content h3 {
+            color: #ff4f7b !important; /* Ghi đè màu chữ link */
+            font-size: 22px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-weight: 800;
+        }
+
+        .card-content p {
+            font-size: 15.5px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #555 !important;
+        }
+
+        .card-content b {
+            color: #222 !important;
+            font-weight: 700;
+        }
+
+        .drive-btn {
+            display: inline-block;
+            margin-top: auto;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #ff4f7b, #ff7e9e);
+            color: white !important;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 79, 123, 0.3);
+        }
+
+        .interactive-card:hover .drive-btn {
+            box-shadow: 0 8px 25px rgba(255, 79, 123, 0.5);
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #e03b65, #ff6b8e);
+        }
+
+        /* CAROUSEL CSS */
+        #projects {
+            max-width: 100%;
+        }
+
+        .carousel-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 96%; /* Gần như Full viền màn hình luôn */
+            max-width: 1600px; 
+            margin: 0 auto;
+        }
+
+        .carousel-btn {
+            background: #ffffff;
+            color: #ff4f7b;
+            border: 2px solid #ff4f7b;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 79, 123, 0.2);
+            z-index: 10;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn:hover {
+            background: #ff4f7b;
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .carousel-track-wrapper {
+            overflow: hidden;
+            width: calc(100% - 90px);
+            margin: 0 15px;
+            padding: 20px 0; /* Cho hover nổi lên không bị cắt */
+        }
+
+        .carousel-track {
+            display: flex;
+            /* Transition is handled by JS for infinite loop */
+        }
+
+        .carousel-slide {
+            min-width: calc(33.333% - 20px);
+            margin: 0 10px;
+            box-sizing: border-box;
+            height: auto;
+        }
+
+        .carousel-slide .interactive-card {
+            height: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .carousel-slide {
+                min-width: calc(100% - 20px);
+            }
+            .carousel-track-wrapper {
+                width: calc(100% - 90px);
+            }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+        /* --- CONCLUSION SECTION --- */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 79, 123, 0.15);
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 40px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff4f7b, #ff7e9e);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+
+        .timeline-card h3 {
+            font-size: 24px;
+            color: #ff4f7b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .timeline-card p {
+            font-size: 16.5px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 0;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-list li {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+            font-size: 16.5px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .skill-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 18px;
+        }
+
+        .skill-list b {
+            color: #222;
+        }
+
+        .split-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .split-item {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 4px solid #ff4f7b;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .split-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .split-item.challenge {
+            border-left-color: #8b5cf6;
+        }
+
+        .split-item h4 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .split-card {
+                grid-template-columns: 1fr;
+            }
+            .timeline-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="acces/logoV3.png" alt="VHN Portfolio"
+                    style="height: 45px; transform: scale(2.2); transform-origin: left center; vertical-align: middle; cursor: pointer;" onclick="window.scrollTo(0,0)">
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <div class="menu" id="menu">
+                <a href="#intro">Giới thiệu</a>
+                <a href="#projects">Dự án</a>
+                <a href="#conclusion">Tổng kết</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="intro" class="hero">
+        <div class="hero-text reveal">
+            <h1>Xin chào, tôi là Vũ Hiền Nhi</h1>
+            <p>
+                Chào mừng bạn đến với Portfolio cá nhân của tôi — nơi tổng hợp hành trình học tập,
+                phát triển năng lực số và ứng dụng trí tuệ nhân tạo trong học tập.
+            </p>
+            <a href="#projects" class="btn">Khám phá dự án</a>
+        </div>
+
+        <div class="avatar-card reveal">
+            <div class="avatar" onclick="document.getElementById('avatar-modal').style.display='flex'">
+                <img src="acces/5894694a8f910ecf5780.jpg" alt="Vũ Hiền Nhi"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            </div>
+            <h2>Vũ Hiền Nhi</h2>
+            <p>25040172 - QH25E7</p>
+            <p>ULIS - Đại học Quốc gia Hà Nội</p>
+        </div>
+        
+        <!-- Avatar Modal -->
+        <div id="avatar-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(5px);" onclick="this.style.display='none'">
+            <img src="acces/5894694a8f910ecf5780.jpg" style="max-width: 90%; max-height: 90vh; border-radius: 20px; box-shadow: 0 0 50px rgba(255,79,123,0.3); animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        </div>
+        <style>
+            @keyframes zoomIn {
+                from { transform: scale(0.5); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+        </style>
+    </section>
+
+    <section>
+        <h2 class="title reveal">Giới thiệu bản thân</h2>
+
+        <div class="bento-grid">
+            <!-- Ô 1: Thông tin cơ bản -->
+            <div class="bento-card bento-1 reveal">
+                <div class="floating-shape shape-circle"></div>
+                <div class="bento-icon">🧑‍🎓</div>
+                <h3>Thông tin cá nhân</h3>
+                <ul>
+                    <li><b>Họ tên:</b> Vũ Hiền Nhi</li>
+                    <li><b>Mã SV:</b> 25040172</li>
+                    <li><b>Lớp:</b> QH25E7</li>
+                    <li><b>Trường:</b> Đại học Ngoại ngữ – ĐHQGHN (ULIS)</li>
+                </ul>
+            </div>
+
+            <!-- Ô 2: Sở thích -->
+            <div class="bento-card bento-2 reveal">
+                <div class="floating-shape shape-triangle"></div>
+                <div class="bento-icon">💡</div>
+                <h3>Sở thích cá nhân</h3>
+                <p>
+                    Là một sinh viên ngành ngôn ngữ trong kỷ nguyên số, tôi luôn hào hứng với việc khám phá và ứng dụng
+                    các công cụ công nghệ vào quá trình học tập. Tôi thích tìm hiểu về các giải pháp kỹ thuật số giúp
+                    tối ưu hóa hiệu suất làm việc cá nhân, thiết kế đồ họa cơ bản và xây dựng các phương pháp tự học
+                    thông minh.
+                </p>
+            </div>
+
+            <!-- Ô 3: Mục tiêu học tập -->
+            <div class="bento-card bento-3 reveal">
+                <div class="floating-shape shape-square"></div>
+                <div>
+                    <div class="bento-icon">🎯</div>
+                    <h3 style="color: #8b5cf6;">Mục tiêu ngắn hạn</h3>
+                    <p>Tích cực phát triển các năng lực cốt lõi trong kỷ nguyên số, trọng tâm là ứng dụng công nghệ để
+                        nâng cao hiệu quả ôn luyện các chứng chỉ quốc tế (IELTS), tối ưu hóa quy trình làm việc nhóm
+                        trực tuyến và làm chủ các công cụ hỗ trợ học thuật.</p>
+                </div>
+                <div>
+                    <div class="bento-icon">🚀</div>
+                    <h3 style="color: #8b5cf6;">Định hướng dài hạn</h3>
+                    <p>Trở thành một người học ngôn ngữ có tư duy công nghệ mạnh mẽ, có khả năng tích hợp linh hoạt các
+                        công cụ số và các giải pháp Trí tuệ nhân tạo (AI) vào việc học tập, nghiên cứu chuyên sâu và
+                        công việc thực tế trong tương lai.</p>
+                </div>
+            </div>
+
+            <!-- Ô 4: Mục tiêu Portfolio -->
+            <div class="bento-card bento-4 reveal">
+                <div class="bento-icon" style="margin-bottom: 5px;">🌟</div>
+                <h3>Mục tiêu của Portfolio này</h3>
+                <ul style="padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">Tổng hợp và hệ thống hóa toàn bộ các khối kiến thức, kỹ năng số cốt
+                        lõi đã được học từ môn <b>"Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo"</b> thông qua các
+                        sản phẩm thực tế từ Bài 1 đến Bài 6.</li>
+                    <li>Giới thiệu năng lực công nghệ và tư duy số cá nhân dưới dạng một Digital Portfolio chuyên
+                        nghiệp, khoa học, dễ truy cập và chia sẻ nhằm phục vụ việc lưu trữ hồ sơ và công nhận kết quả
+                        học tập.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="title reveal">Trang dự án</h2>
+
+        <div class="carousel-container reveal">
+            <button class="carousel-btn prev-btn" onclick="slidePrev()">&#10094;</button>
+            <div class="carousel-track-wrapper">
+                <div class="carousel-track" id="projectsTrack">
+                    <!-- Bài tập 1 -->
+                    <div class="carousel-slide">
+                        <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
+                            <div class="card-img-wrapper">
+                                <img src="acces/anh-sach.webp" alt="Bài tập 1">
+                            </div>
+                            <div class="card-content">
+                                <span class="tag" style="background: #e0e7ff; color: #4338ca;">Bài tập 1</span>
+                                <h3>Thao tác cơ bản với tập tin và thư mục</h3>
+                                <p><b>Mục tiêu:</b> Làm chủ cấu trúc lưu trữ dữ liệu, tổ chức tệp tin logic và đặt tên tệp chuẩn hóa.</p>
+                                <p><b>Quá trình:</b> Thiết lập cây thư mục học tập, đổi tên tệp theo quy ước, sắp xếp dữ liệu và chụp ảnh minh họa.</p>
+                                <span class="drive-btn">Xem chi tiết trên Drive →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Bài tập 2 -->
+                    <div class="carousel-slide">
+                        <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
+                            <div class="card-img-wrapper">
+                                <img src="acces/anh-sach.webp" alt="Bài tập 2">
+                            </div>
+                            <div class="card-content">
+                                <span class="tag" style="background: #fce7f3; color: #be185d;">Bài tập 2</span>
+                                <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
+                                <p><b>Mục tiêu:</b> Phát triển kỹ năng tìm kiếm nâng cao và đánh giá độ tin cậy của nguồn học thuật.</p>
+                                <p><b>Quá trình:</b> Sử dụng Search Operators, lập bảng đánh giá nguồn tin theo tiêu chí khoa học.</p>
+                                <span class="drive-btn">Xem chi tiết trên Drive →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Bài tập 3 -->
+                    <div class="carousel-slide">
+                        <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
+                            <div class="card-img-wrapper">
+                                <img src="acces/anh-sach.webp" alt="Bài tập 3">
+                            </div>
+                            <div class="card-content">
+                                <span class="tag" style="background: #dcfce7; color: #15803d;">Bài tập 3</span>
+                                <h3>Viết Prompt hiệu quả cho học tập</h3>
+                                <p><b>Mục tiêu:</b> Ứng dụng Generative AI vào học tập thông qua kỹ thuật Prompt Engineering.</p>
+                                <p><b>Quá trình:</b> So sánh Prompt ban đầu và Prompt cải tiến bằng vai trò, bối cảnh, giới hạn và định dạng đầu ra.</p>
+                                <span class="drive-btn">Xem chi tiết trên Drive →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Bài tập 4 -->
+                    <div class="carousel-slide">
+                        <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
+                            <div class="card-img-wrapper">
+                                <img src="acces/anh-sach.webp" alt="Bài tập 4">
+                            </div>
+                            <div class="card-content">
+                                <span class="tag" style="background: #fef08a; color: #a16207;">Bài tập 4</span>
+                                <h3>Hợp tác trực tuyến cho dự án nhóm</h3>
+                                <p><b>Mục tiêu:</b> Ứng dụng nền tảng số và công cụ đám mây để cộng tác nhóm hiệu quả.</p>
+                                <p><b>Quá trình:</b> Tạo không gian làm việc chung, phân chia nhiệm vụ, tương tác và tổng hợp minh chứng cộng tác.</p>
+                                <span class="drive-btn">Xem chi tiết trên Drive →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Bài tập 5 -->
+                    <div class="carousel-slide">
+                        <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
+                            <div class="card-img-wrapper">
+                                <img src="acces/anh-sach.webp" alt="Bài tập 5">
+                            </div>
+                            <div class="card-content">
+                                <span class="tag" style="background: #e0f2fe; color: #0369a1;">Bài tập 5</span>
+                                <h3>AI tạo sinh hỗ trợ sáng tạo nội dung</h3>
+                                <p><b>Mục tiêu:</b> Kết hợp tư duy cá nhân với AI để tạo sản phẩm nội dung số chuyên nghiệp.</p>
+                                <p><b>Quá trình:</b> Lên ý tưởng, dùng AI tạo tài nguyên, biên tập và hoàn thiện sản phẩm truyền thông số.</p>
+                                <span class="drive-btn">Xem chi tiết trên Drive →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Bài tập 6 -->
+                    <div class="carousel-slide">
+                        <a href="https://docs.google.com/document/d/1RLPJHaXX9SiNT4QRQx46iVwapQZuSw3WTleomND4uUU/edit?tab=t.0" target="_blank" class="interactive-card">
+                            <div class="card-img-wrapper">
+                                <img src="acces/anh-sach.webp" alt="Bài tập 6">
+                            </div>
+                            <div class="card-content">
+                                <span class="tag" style="background: #f3e8ff; color: #7e22ce;">Bài tập 6</span>
+                                <h3>Sử dụng AI có trách nhiệm</h3>
+                                <p><b>Mục tiêu:</b> Nhận thức về an toàn thông tin, đạo đức AI và liêm chính học thuật.</p>
+                                <p><b>Quá trình:</b> Xây dựng bộ nguyên tắc cá nhân khi dùng AI, thực hành trích dẫn nguồn minh bạch.</p>
+                                <span class="drive-btn">Xem chi tiết trên Drive →</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn next-btn" onclick="slideNext()">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="conclusion">
+        <h2 class="title reveal">Tổng kết hành trình</h2>
+
+        <div class="timeline-container">
+            <!-- Khối 1 -->
+            <div class="timeline-card reveal">
+                <h3><span style="font-size: 30px;">💡</span> Trải nghiệm & Cảm nhận</h3>
+                <p>
+                    Hành trình xây dựng và hoàn thiện Digital Portfolio này là một trải nghiệm chuyển đổi số thực tế và vô cùng giá trị đối với một sinh viên năm nhất tại ULIS như tôi. Việc tự tay thiết kế website không chỉ giúp tôi hệ thống lại các sản phẩm học tập một cách trực quan, mà còn rèn luyện cho tôi thói quen chủ động làm chủ công nghệ, biết cách số hóa các kỹ năng và kết quả của bản thân để sẵn sàng hội nhập vào môi trường học tập hiện đại.
+                </p>
+            </div>
+
+            <!-- Khối 2 -->
+            <div class="timeline-card reveal">
+                <h3><span style="font-size: 30px;">🎯</span> Kiến thức & Kỹ năng</h3>
+                <ul class="skill-list">
+                    <li><b>Làm chủ kỹ thuật Prompt chuyên nghiệp:</b> Tôi không còn sử dụng AI một cách cảm tính mà đã biết cách tư duy, xây dựng cấu trúc Prompt tối ưu để AI hỗ trợ chính xác cho các tác vụ học tập và xử lý thông tin.</li>
+                    <li><b>Quản lý tài nguyên số và dữ liệu:</b> Hình thành tư duy khoa học trong việc tổ chức tệp tin, phân tích dữ liệu và sàng lọc thông tin học thuật có chiều sâu giữa kỷ nguyên bùng nổ thông tin.</li>
+                    <li><b>Cộng tác và sáng tạo trên không gian số:</b> Thành thạo việc sử dụng các nền tảng đám mây để điều phối dự án nhóm trực tuyến và biết cách phối hợp với trí tuệ nhân tạo để tối ưu hóa năng lực sáng tạo nội dung số.</li>
+                </ul>
+            </div>
+
+            <!-- Khối 3 -->
+            <div class="timeline-card reveal" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                <div class="split-card">
+                    <div class="split-item reveal">
+                        <h4 style="color: #ff4f7b;">❤️ Điểm tâm đắc</h4>
+                        <p style="font-size: 15.5px;">Tôi vô cùng tâm đắc khi toàn bộ chuỗi sản phẩm từ Bài 1 đến Bài 6 của mình được liên kết chặt chẽ và thể hiện một cách mạch lạc trên nền tảng Portfolio kỹ thuật số này. Đây chính là minh chứng rõ ràng nhất cho sự tiến bộ trong năng lực số và tư duy đổi mới của tôi sau khi hoàn thành học phần.</p>
+                    </div>
+                    
+                    <div class="split-item challenge reveal">
+                        <h4 style="color: #8b5cf6;">🚀 Thách thức vượt qua</h4>
+                        <p style="font-size: 15.5px;">Khó khăn lớn nhất ban đầu là làm quen với các công cụ thiết kế website, tối ưu giao diện sao cho khoa học, dễ đọc, đồng thời đảm bảo tuyệt đối quy tắc liêm chính học thuật. Tuy nhiên, thông qua việc kiên trì thực hành và bám sát rubric đánh giá, tôi đã vượt qua rào cản kỹ thuật để tạo nên một sản phẩm Portfolio tinh gọn, đúng chuẩn mực đề ra.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 | Digital Portfolio - Vũ Hiền Nhi
+    </footer>
+
+    <button class="top-btn" id="topBtn" onclick="scrollToTop()">↑</button>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("active");
+        }
+
+        const reveals = document.querySelectorAll(".reveal");
+
+        function revealOnScroll() {
+            reveals.forEach(item => {
+                const windowHeight = window.innerHeight;
+                const itemTop = item.getBoundingClientRect().top;
+                const revealPoint = 120;
+
+                if (itemTop < windowHeight - revealPoint) {
+                    item.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+        window.addEventListener("load", revealOnScroll);
+
+        const topBtn = document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 500) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        document.querySelectorAll(".menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.getElementById("menu").classList.remove("active");
+            });
+        });
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.innerHTML = "🌸";
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.animationDuration = Math.random() * 3 + 4 + "s";
+            flower.style.fontSize = Math.random() * 10 + 15 + "px";
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.remove();
+            }, 7000);
+        }
+
+        setInterval(createFlower, 400);
+
+        document.addEventListener("click", function (e) {
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("click-heart");
+                heart.innerHTML = "💖";
+                heart.style.left = e.clientX + "px";
+                heart.style.top = e.clientY + "px";
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 60 + 40;
+                const tx = Math.cos(angle) * distance + "px";
+                const ty = Math.sin(angle) * distance + "px";
+
+                heart.style.setProperty("--tx", tx);
+                heart.style.setProperty("--ty", ty);
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 1000);
+            }
+        });
+
+        // --- CAROUSEL LOGIC (INFINITE LOOP) ---
+        let slideTimer;
+        const track = document.getElementById("projectsTrack");
+        let isSliding = false;
+
+        function getSlideWidth() {
+            const slide = track.querySelector(".carousel-slide");
+            return slide.offsetWidth + 20; // 20px is total margin
+        }
+
+        function slideNext() {
+            if (isSliding || !track || track.children.length === 0) return;
+            isSliding = true;
+            
+            const slideWidth = getSlideWidth();
+            track.style.transition = 'transform 0.5s ease-in-out';
+            track.style.transform = `translateX(-${slideWidth}px)`;
+
+            setTimeout(() => {
+                const firstChild = track.firstElementChild;
+                track.appendChild(firstChild);
+                
+                track.style.transition = 'none';
+                track.style.transform = 'translateX(0)';
+                
+                // Force reflow
+                track.offsetHeight; 
+                
+                isSliding = false;
+            }, 500); // 500ms matches CSS transition
+            
+            resetTimer();
+        }
+
+        function slidePrev() {
+            if (isSliding || !track || track.children.length === 0) return;
+            isSliding = true;
+            
+            const lastChild = track.lastElementChild;
+            track.insertBefore(lastChild, track.firstElementChild);
+            
+            const slideWidth = getSlideWidth();
+            track.style.transition = 'none';
+            track.style.transform = `translateX(-${slideWidth}px)`;
+            
+            // Force reflow
+            track.offsetHeight;
+            
+            track.style.transition = 'transform 0.5s ease-in-out';
+            track.style.transform = 'translateX(0)';
+
+            setTimeout(() => {
+                isSliding = false;
+            }, 500);
+            
+            resetTimer();
+        }
+
+        function startTimer() {
+            slideTimer = setInterval(slideNext, 4000);
+        }
+
+        function resetTimer() {
+            clearInterval(slideTimer);
+            startTimer();
+        }
+
+        startTimer();
+
+    </script>
+
+</body>
+
+</html>
